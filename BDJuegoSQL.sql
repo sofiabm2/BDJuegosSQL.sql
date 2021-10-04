@@ -1,0 +1,70 @@
+DROP DATABASE IF EXISTS Tablas;
+CREATE DATABASE Tablas;
+USE Tablas;
+
+CREATE TABLE Jugador (
+idJ INT NOT NULL,
+PRIMARY KEY(idJ),
+Nombre VARCHAR(20),
+Password VARCHAR(9)
+)ENGINE=InnoDB;
+
+INSERT INTO Jugador VALUES (1, 'Carla', '516216');
+INSERT INTO Jugador VALUES (2, 'Joan', '671267');
+INSERT INTO Jugador VALUES (3, 'Pol', '827272');
+INSERT INTO Jugador VALUES (4, 'Abril', '282882');
+
+CREATE TABLE Partida (
+idP INT NOT NULL,
+PRIMARY KEY (idP),
+Ganador VARCHAR(20),
+Fecha VARCHAR(20),
+Duracion VARCHAR(20)
+)ENGINE=InnoDB;
+
+INSERT INTO Partida VALUES (1, 'Carla','2/8/21','12');
+INSERT INTO Partida VALUES (2, 'Joan','23/2/21','16');
+INSERT INTO Partida VALUES (3, 'Pol','12/3/21','19');
+INSERT INTO Partida VALUES (4, 'Abril','30/10/21','19');
+
+CREATE TABLE Historial (
+idJ INT NOT NULL,
+FOREIGN KEY (idJ) REFERENCES Jugador (idJ),
+idP INT NOT NULL,
+FOREIGN KEY (idP) REFERENCES Partida (idP),
+Puntuacion INT
+)ENGINE=InnoDB;
+
+INSERT INTO Historial VALUES (1, 7, 55);
+INSERT INTO Historial VALUES (1, 4, 37);
+INSERT INTO Historial VALUES (2, 1, 60);
+INSERT INTO Historial VALUES (2, 1, 25);
+
+CREATE TABLE Pruebas (
+idPb INT NOT NULL,
+PRIMARY KEY (idPb),
+Nombre VARCHAR (20),
+Puntos INT NOT NULL
+)ENGINE=InnoDB;
+
+INSERT INTO Pruebas VALUES (1, 'Preguntas', 20);
+INSERT INTO Pruebas VALUES (2, 'Parejas',10);
+
+CREATE TABLE Juegos (
+idP INT NOT NULL,
+FOREIGN KEY (idP) REFERENCES Partida (idP),
+idPb INT NOT NULL,
+FOREIGN KEY (idPb) REFERENCES Pruebas (idPb),
+Cantidad INT
+)ENGINE=InnoDB;
+
+INSERT INTO Juegos VALUES (1, 1, 3);
+INSERT INTO Juegos VALUES (1, 2, 2);
+
+
+
+
+
+
+
+
